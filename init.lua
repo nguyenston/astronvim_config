@@ -247,6 +247,18 @@ local config = {
     ["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
       ensure_installed = { "prettier", "stylua" },
     },
+    -- disable certain neotree keymaps
+    ["neo-tree"] = {
+      filesystem = {
+        window = {
+          mappings = {
+            ["/"] = "",
+            ["F"] = "fuzzy_finder",
+            ["<C-c>"] = "clear_filter",
+          },
+        },
+      },
+    },
     packer = { -- overrides `require("packer").setup(...)`
       compile_path = vim.fn.stdpath "data" .. "/packer_compiled.lua",
     },
