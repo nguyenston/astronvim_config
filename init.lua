@@ -117,6 +117,7 @@ local config = {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
+      "julials",
     },
     -- easily add or disable built in mappings added during LSP attaching
     mappings = {
@@ -129,9 +130,7 @@ local config = {
     -- end,
 
     -- override the mason server-registration function
-    -- server_registration = function(server, opts)
-    --   require("lspconfig")[server].setup(opts)
-    -- end,
+    server_registration = function(server, opts) require("lspconfig")[server].setup(opts) end,
 
     -- Add overrides for LSP server settings, the keys are the name of the server
     ["server-settings"] = {
@@ -204,10 +203,15 @@ local config = {
       --   end,
       -- },
 
+      -- Vim surround
+      ["kylechui/nvim-surround"] = {
+        config = function() require("nvim-surround").setup {} end,
+      },
       -- Disable smooth scrolling
       ["declancm/cinnamon.nvim"] = { disable = true },
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
+
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
       -- config variable is the default configuration table for the setup functino call
       local null_ls = require "null-ls"
@@ -302,7 +306,6 @@ local config = {
       pattern = "plugins.lua",
       command = "source <afile> | PackerSync",
     })
-
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
