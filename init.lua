@@ -45,6 +45,7 @@ local config = {
   options = {
     opt = {
       relativenumber = true, -- sets vim.opt.relativenumber
+      guifont = { "JetBrains Mono,JetBrainsMono Nerd Font,Source Code Pro,monospace", ":h12" }, -- sets font for neovide
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -171,6 +172,15 @@ local config = {
       ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+
+      -- remap toggle terminal to <C-e>
+      --
+
+      -- mapping for window/panel "m" for "monitor"
+      ["<leader>mo"] = { ":only<cr>", desc = "Close other panels" },
+      ["<leader>ms"] = { ":split<cr>", desc = "Split panel to the right" },
+      ["<leader>mv"] = { ":vsplit<cr>", desc = "Split panel downwards" },
+      ["<leader>mc"] = { ":close<cr>", desc = "Close panel" },
     },
     t = {
       -- setting a mapping to false will disable it
@@ -300,6 +310,7 @@ local config = {
           -- third key is the key to bring up next level and its displayed
           -- group name in which-key top level menu
           ["b"] = { name = "Buffer" },
+          ["m"] = { name = "Panel" },
         },
       },
     },
@@ -318,7 +329,7 @@ local config = {
       pattern = "plugins.lua",
       command = "source <afile> | PackerSync",
     })
-    vim.opt.guifont = { "JetBrains Mono,Source Code Pro,monospace", ":h12" }
+    --[[ vim.opt.guifont = { "JetBrains Mono,Source Code Pro,monospace", ":h12" } ]]
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
