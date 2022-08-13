@@ -1,2 +1,3 @@
 # astronvim_config
-Personal astronvim config 
+
+Personal astronvim config
