@@ -173,14 +173,21 @@ local config = {
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 
-      -- remap toggle terminal to <C-e>
-      --
-
       -- mapping for window/panel "m" for "monitor"
       ["<leader>mo"] = { ":only<cr>", desc = "Close other panels" },
       ["<leader>ms"] = { ":split<cr>", desc = "Split panel to the right" },
       ["<leader>mv"] = { ":vsplit<cr>", desc = "Split panel downwards" },
       ["<leader>mc"] = { ":close<cr>", desc = "Close panel" },
+
+      -- fixed some breaking changes for Comment.nvim
+      ["<leader>/"] = { function() require("Comment.api").toggle.linewise.current() end },
+    },
+    v = {
+      -- fixed some breaking changes for Comment.nvim
+      ["<leader>/"] = {
+        "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
+        desc = "Toggle comment line",
+      },
     },
     t = {
       -- setting a mapping to false will disable it
@@ -259,6 +266,7 @@ local config = {
     },
     -- disable certain neotree keymaps
     ["neo-tree"] = {
+      close_if_last_window = false,
       filesystem = {
         window = {
           mappings = {
@@ -271,6 +279,24 @@ local config = {
     },
     packer = { -- overrides `require("packer").setup(...)`
       compile_path = vim.fn.stdpath "data" .. "/packer_compiled.lua",
+    },
+
+    -- fixing Comment.nvim breaking changes
+    Comment = {
+      pre_hook = function(ctx)
+        local utils = require "Comment.utils"
+        local location = nil
+        if ctx.ctype == utils.ctype.blockwise then
+          location = require("ts_context_commentstring.utils").get_cursor_location()
+        elseif ctx.cmotion == utils.cmotion.v or ctx.cmotion == utils.cmotion.V then
+          location = require("ts_context_commentstring.utils").get_visual_start_location()
+        end
+
+        return require("ts_context_commentstring.internal").calculate_commentstring {
+          key = ctx.ctype == utils.ctype.linewise and "__default" or "__multiline",
+          location = location,
+        }
+      end,
     },
   },
 
@@ -329,7 +355,7 @@ local config = {
       pattern = "plugins.lua",
       command = "source <afile> | PackerSync",
     })
-    --[[ vim.opt.guifont = { "JetBrains Mono,Source Code Pro,monospace", ":h12" } ]]
+
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
