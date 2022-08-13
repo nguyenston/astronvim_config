@@ -318,6 +318,7 @@ local config = {
       pattern = "plugins.lua",
       command = "source <afile> | PackerSync",
     })
+    vim.opt.guifont = { "JetBrainsMono,Source Code Pro,monospace", ":h12" }
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
