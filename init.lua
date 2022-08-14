@@ -191,7 +191,9 @@ local config = {
     },
     t = {
       -- setting a mapping to false will disable it
+      -- remove annoying terminal mapping
       ["<esc>"] = false,
+      ["jk"] = false,
     },
   },
 
