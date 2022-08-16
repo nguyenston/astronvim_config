@@ -26,7 +26,7 @@ local config = {
   },
 
   -- Set colorscheme to use
-  colorscheme = "default_theme",
+  colorscheme = "tokyonight",
 
   -- Override highlight groups in any theme
   highlights = {
@@ -223,6 +223,8 @@ local config = {
       --   end,
       -- },
 
+      -- tokyonight theme
+      ["folke/tokyonight.nvim"] = {},
       -- Vim surround
       ["kylechui/nvim-surround"] = {
         config = function() require("nvim-surround").setup {} end,
@@ -358,6 +360,7 @@ local config = {
       pattern = "plugins.lua",
       command = "source <afile> | PackerSync",
     })
+    -- require("packer").use "folke/tokyonight.nvim"
 
     -- Set up custom filetypes
     -- vim.filetype.add {
