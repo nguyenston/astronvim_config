@@ -181,6 +181,8 @@ local config = {
 
       -- fixed some breaking changes for Comment.nvim
       ["<leader>/"] = { function() require("Comment.api").toggle.linewise.current() end },
+      -- quit all
+      ["<leader>q"] = { "<cmd>qa<cr>", desc = "Quit" },
     },
     v = {
       -- fixed some breaking changes for Comment.nvim
