@@ -194,7 +194,7 @@ local config = {
       -- remove annoying terminal mapping
       ["<esc>"] = false,
       ["jk"] = false,
-      ["@@"] = { "<C-\\><C-n>", desc = "Terminal normal mode" },
+      ["<C-e>"] = { "<C-\\><C-n>", desc = "Terminal normal mode" },
     },
   },
 
