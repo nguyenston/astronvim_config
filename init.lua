@@ -49,11 +49,12 @@ local config = {
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
-      tokyonight_transparent = true,
+      tokyonight_transparent = not vim.g.neovide,
       -- override comment color
       tokyonight_colors = {
         -- comment = "#7f6c80",
       },
+      neovide_transparency = 0.95,
     },
   },
   -- If you need more control, you can use the function()...end notation
