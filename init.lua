@@ -231,6 +231,10 @@ local config = {
       --   end,
       -- },
 
+      -- eww config "yuck" syntax highlight
+      ["elkowar/yuck.vim"] = {},
+      -- rasi syntax highlighting
+      ["Fymyte/rasi.vim"] = { ft = "rasi" },
       -- tokyonight theme
       ["folke/tokyonight.nvim"] = {},
       -- Vim surround
@@ -368,6 +372,7 @@ local config = {
       pattern = "plugins.lua",
       command = "source <afile> | PackerSync",
     })
+
     -- require("packer").use "folke/tokyonight.nvim"
 
     -- Set up custom filetypes
