@@ -231,6 +231,8 @@ local config = {
       --   end,
       -- },
 
+      -- parinfer
+      ["eraserhd/parinfer-rust"] = {},
       -- eww config "yuck" syntax highlight
       ["elkowar/yuck.vim"] = {},
       -- rasi syntax highlighting
@@ -245,6 +247,9 @@ local config = {
       ["declancm/cinnamon.nvim"] = { disable = true },
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
+    ["notify"] = {
+      background_colour = "#000000",
+    },
 
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
       -- config variable is the default configuration table for the setup functino call
